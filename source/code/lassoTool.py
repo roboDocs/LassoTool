@@ -59,7 +59,7 @@ class LassoTool(EditingTool):
         return False
     
     def getToolbarTip(self):
-        return "lasso"
+        return "Lasso Tool"
         
     def getToolbarIcon(self):
         return toolbarIcon
