@@ -1,0 +1,11 @@
+name: LassoTool
+developer: TypeMyType
+developerURL: http://www.typemytype.com
+launchAtStartUp: true
+mainScript: lassoTool.py
+version: '2.1'
+addToMenu: []
+html: true
+timeStamp: 1696384411.295188
+requiresVersionMajor: '4'
+requiresVersionMinor: 4b
