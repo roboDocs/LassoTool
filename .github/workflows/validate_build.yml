@@ -2,6 +2,11 @@ name: Validate and Build the Extension
 on:
   push
 
+  workflow_run:
+    workflows: ["Create tag"]
+    types:
+      - completed
+
 jobs:
   validate_and_build:
     runs-on: ubuntu-latest
