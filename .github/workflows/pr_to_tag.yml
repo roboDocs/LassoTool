@@ -25,7 +25,9 @@ jobs:
         if [ $(git tag -l "${{ steps.info-action.outputs.version }}") ]; then
           echo "Tag ${{ steps.info-action.outputs.version }} exists"
         else
-          echo "Create tag ${{ steps.info-action.outputs.version }}"          
+          echo "Create tag ${{ steps.info-action.outputs.version }}"      
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git tag -a ${{ steps.info-action.outputs.version }} -m "Version ${{ steps.info-action.outputs.version }}"
           git push --follow-tags
         fi
