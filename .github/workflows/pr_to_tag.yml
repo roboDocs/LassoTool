@@ -1,7 +1,13 @@
 name: Create tag if not there after a pull request
 on:
-  pull_request
+  push
+  # pull_request
 
+permissions:
+  pull-requests: write
+  issues: write
+  repository-projects: write
+  
 jobs:
   create_tag_from_pr:
     runs-on: ubuntu-latest
