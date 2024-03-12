@@ -13,14 +13,14 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set ENV values from YAML
-      uses: pietrobolcato/action-read-yaml@1.0.0
+      uses: teunmooij/yaml@v1
       id: info
       with:
-          config: ${{ github.workspace }}/info.yaml
+          from-file: info.yaml
 
     - name: Create tag if not present
       uses: rickstaa/action-create-tag@v1
       continue-on-error: true
       with:
-        tag: ${{ steps.info.outputs['version'] }}
+        tag: ${{ steps.info.outputs.version }}
         force_push_tag: true
