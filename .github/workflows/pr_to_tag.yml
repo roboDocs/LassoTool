@@ -12,15 +12,19 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set ENV values from YAML
+    - name: Read yaml
       uses: teunmooij/yaml@v1
       id: info
       with:
           from-file: info.yaml
 
+    - name: Test yaml
+      run : |
+        echo ${{ steps.info.outputs.version }}
+
     - name: Create tag if not present
       uses: rickstaa/action-create-tag@v1
       continue-on-error: true
       with:
-        tag: ${{ steps.info.outputs.version }}
+        tag: "${{ steps.info.outputs.version }}"
         force_push_tag: true
