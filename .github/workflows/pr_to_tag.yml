@@ -19,7 +19,7 @@ jobs:
     - name: Create tag if not present
       continue-on-error: true
       run : |
-        echo The PR was merged
+        echo The PR was merged hope this works
         git tag ${{ ENV.VERSION }}
         git push --follow-tags
         
