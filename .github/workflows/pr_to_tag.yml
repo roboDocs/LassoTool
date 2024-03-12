@@ -3,10 +3,7 @@ on:
   push
   # pull_request
 
-permissions:
-  pull-requests: write
-  issues: write
-  repository-projects: write
+permissions: write-all
   
 jobs:
   create_tag_from_pr:
