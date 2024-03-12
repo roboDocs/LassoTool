@@ -26,6 +26,6 @@ jobs:
           echo "Tag ${{ steps.info-action.outputs.version }} exists"
         else
           echo "Create tag ${{ steps.info-action.outputs.version }}"          
-          git tag -a ${{ steps.info-action.outputs.version }} -= "Version ${{ steps.info-action.outputs.version }}"
+          git tag -a ${{ steps.info-action.outputs.version }} -m "Version ${{ steps.info-action.outputs.version }}"
           git push --follow-tags
         fi
