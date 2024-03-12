@@ -20,6 +20,6 @@ jobs:
       uses: rickstaa/action-create-tag@v1
       id: "tag_create"
       with:
-        tag: $VERSION
+        tag: ${{ ENV.VERSION }}
         tag_exists_error: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
