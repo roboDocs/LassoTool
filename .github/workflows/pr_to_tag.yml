@@ -19,3 +19,4 @@ jobs:
       with:
         tag: $VERSION
         tag_exists_error: false
+        github_token: ${{ secrets.GITHUB_TOKEN }}
