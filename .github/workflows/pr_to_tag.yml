@@ -19,15 +19,8 @@ jobs:
           config: ${{ github.workspace }}/info.yaml
 
     - name: Create tag if not present
+      uses: rickstaa/action-create-tag@v1
       continue-on-error: true
-      run : |
-        echo The PR was merged hope this works
-        git tag ${{ steps.info.outputs['version'] }}
-        git push --follow-tags
-        
-    #  uses: rickstaa/action-create-tag@v1
-    #  id: "tag_create"
-    #  continue-on-error: true
-    #  with:
-    #    tag: ${{ ENV.VERSION }}
-    #    force_push_tag: true
+      with:
+        tag: ${{ steps.info.outputs['version'] }}
+        force_push_tag: true
