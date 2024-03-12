@@ -1,0 +1,19 @@
+name: Create tag if not there after a pull request
+on:
+  pull_request
+
+jobs:
+  create_tag_from_pr:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Load environment from YAML
+      uses: doughepi/yaml-env-action
+      with:
+          files: info.yaml
+
+    - name: Create tag if not present
+      uses: rickstaa/action-create-tag@v1
+      id: "tag_create"
+      with:
+        tag: info.VERSION
+        tag_exists_error: false
