@@ -26,5 +26,5 @@ jobs:
       uses: rickstaa/action-create-tag@v1
       continue-on-error: true
       with:
-        tag: ${{ steps.info-action.outputs.data["version"] }}
+        tag: ${{ steps.info-action.outputs.data.version }}
         force_push_tag: true
