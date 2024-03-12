@@ -1,7 +1,6 @@
 name: Create tag
 on:
-  push
-  # pull_request
+  pull_request
 
 permissions: write-all
   
