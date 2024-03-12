@@ -6,14 +6,16 @@ jobs:
   create_tag_from_pr:
     runs-on: ubuntu-latest
     steps:
-    - name: Load environment from YAML
-      uses: doughepi/yaml-env-action
+    - uses: actions/checkout@v4
+
+    - name: Set ENV values from YAML
+      uses: dcarbone/yaml-to-env-action@v1.0.0
       with:
-          files: info.yaml
+        yaml-file: info.yaml
 
     - name: Create tag if not present
       uses: rickstaa/action-create-tag@v1
       id: "tag_create"
       with:
-        tag: info.VERSION
+        tag: $VERSION
         tag_exists_error: false
