@@ -1,12 +1,13 @@
 name: Create a tag
 on:
-  pull_request
+  push
 
 permissions: write-all
   
 jobs:
   create_tag_from_pr:
-    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v4
 
@@ -16,9 +17,15 @@ jobs:
         yaml-file: info.yaml
 
     - name: Create tag if not present
-      uses: rickstaa/action-create-tag@v1
-      id: "tag_create"
       continue-on-error: true
-      with:
-        tag: ${{ ENV.VERSION }}
-        force_push_tag: true
+      run : |
+        echo The PR was merged
+        git tag ${{ ENV.VERSION }}
+        git push --follow-tags
+        
+    #  uses: rickstaa/action-create-tag@v1
+    #  id: "tag_create"
+    #  continue-on-error: true
+    #  with:
+    #    tag: ${{ ENV.VERSION }}
+    #    force_push_tag: true
