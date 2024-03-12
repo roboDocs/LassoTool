@@ -1,4 +1,4 @@
-name: Create tag if not there after a pull request
+name: Create tag
 on:
   push
   # pull_request
