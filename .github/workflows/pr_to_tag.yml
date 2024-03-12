@@ -1,13 +1,11 @@
 name: Create a tag
 on:
-  pull_request:
-    types: [closed]
+  push    
 
 permissions: write-all
   
 jobs:
   create_tag_from_pr:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v4
@@ -18,14 +16,16 @@ jobs:
       with:
           file-path: info.yaml
 
-    - name: Content yaml
+    - name: Read version from yaml
       run : |
-        echo ${{ steps.info-action.outputs }}
-        echo ${{ steps.info-action.outputs.version }}
+        echo version: ${{ steps.info-action.outputs.version }}
 
     - name: Create tag if not present
-      uses: rickstaa/action-create-tag@v1
-      continue-on-error: true
-      with:
-        tag: ${{ steps.info-action.outputs.version }}
-        force_push_tag: true
+      run: |
+        if [ $(git tag -l "${{ steps.info-action.outputs.version }}") ]; then
+          echo "Tag ${{ steps.info-action.outputs.version }} exists"
+        else
+          echo "Create tag ${{ steps.info-action.outputs.version }}"          
+          git tag ${{ steps.info-action.outputs.version }}
+          git push --follow-tags
+        fi
