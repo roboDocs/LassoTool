@@ -13,19 +13,19 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Read yaml
-      uses: teunmooij/yaml@v1
+      uses: actions-tools/yaml-outputs@v2
       id: info-action
       with:
-          from-file: info.yaml
+          file-path: info.yaml
 
     - name: Content yaml
       run : |
-        echo ${{ steps.info-action.outputs.data }}
-        echo ${{ steps.info-action.outputs.data['version'] }}
+        echo ${{ steps.info-action.outputs }}
+        echo ${{ steps.info-action.outputs.version }}
 
     - name: Create tag if not present
       uses: rickstaa/action-create-tag@v1
       continue-on-error: true
       with:
-        tag: ${{ steps.info-action.outputs.data['version'] }}
+        tag: ${{ steps.info-action.outputs.version }}
         force_push_tag: true
