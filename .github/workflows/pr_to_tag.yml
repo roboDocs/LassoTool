@@ -29,5 +29,5 @@ jobs:
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git tag -a ${{ steps.info-action.outputs.version }} -m "Version ${{ steps.info-action.outputs.version }}"
-          git push --follow-tags
+          git push origin "${{ steps.info-action.outputs.version }}"
         fi
