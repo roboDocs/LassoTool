@@ -3,23 +3,23 @@ from mojo.extensions import ExtensionBundle
 from mojo.UI import getDefault, appearanceColorKey
 
 
-bundle = ExtensionBundle("LassoTool")
+bundle = ExtensionBundle("Lasso Tool")
 toolbarIcon = bundle.get("LassoToolIcon")
 
 
 class LassoTool(EditingTool):
-    
+
     def setup(self):
         container = self.extensionContainer(
             identifier="LassoTool.foreground",
             location='foreground',
             clear=True
         )
-        
+
         self.selectionFillColor = getDefault(appearanceColorKey("glyphViewSelectionMarqueColor"))
         r, g, b, a = self.selectionFillColor
         self.selectionStrokeColor = (r, g, b, 1)
-        
+
         self.selectionContourLayer = container.appendPathSublayer(
             fillColor=self.selectionFillColor,
             strokeColor=self.selectionStrokeColor,
@@ -52,15 +52,15 @@ class LassoTool(EditingTool):
                     point.selected = not result
                 else:
                     point.selected = result
-        
+
         self.selectionContourLayer.setPath(None)
-        
+
     def canSelectWithMarque(self):
         return False
-    
+
     def getToolbarTip(self):
         return "Lasso Tool"
-        
+
     def getToolbarIcon(self):
         return toolbarIcon
 
