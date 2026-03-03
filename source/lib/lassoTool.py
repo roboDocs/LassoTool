@@ -59,8 +59,11 @@ class LassoTool(EditingTool):
 
         self.selectionContourLayer.setPath(None)
 
-    def canSelectWithMarque(self):
+    def canSelectWithMarquee(self):
         return False
+
+    # deprecated in RF4.6
+    canSelectWithMarque = canSelectWithMarquee
 
     def dragSelection(self, point, delta):
         # From RF4.6+
