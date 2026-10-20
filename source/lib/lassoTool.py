@@ -68,7 +68,10 @@ class LassoTool(EditingTool):
                 for point in offcurves:
                     result = containsPoint((point.x, point.y))
                     if result:
-                        point.selected = True
+                        if self.shiftDown and point.selected:
+                            point.selected = False
+                        else:
+                            point.selected = True
                     elif not self.shiftDown:
                         point.selected = False
 
@@ -78,8 +81,13 @@ class LassoTool(EditingTool):
                 for point in oncurves:
                     result = containsPoint((point.x, point.y))
                     if result:
-                        point.selected = True
+                        if self.shiftDown and point.selected:
+                            point.selected = False
+                        else:
+                            point.selected = True
                     elif not self.shiftDown:
+                        # keep points beyond the result area selected only
+                        # if the shift key is down
                         point.selected = False
 
         self.selectionContourLayer.setPath(None)
